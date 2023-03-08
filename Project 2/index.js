@@ -103,6 +103,10 @@ document.getElementById("resetBtn").onclick = () => {
     stopwatchStartBtn.classList.remove("hidden");
     stopwatchPauseBtn.classList.add("hidden");
     stopwatchLapBtn.classList.add("hidden");
+    //deleting the laps
+    document.querySelectorAll(".lap").forEach((e) => {
+        e.remove();
+    });
 };
 
 //////pausing stopwatch on click
@@ -111,8 +115,8 @@ document.getElementById("resetBtn").onclick = () => {
 //     pauseStopwatch();
 
 //     //show the pause button and lap button
-//     document.getElementById("startBtn").classList.remove("hidden");
-//     document.getElementById("pauseBtn").classList.add("hidden");
+//     stopwatchStartBtn.classList.remove("hidden");
+//     stopwatchPauseBtn.classList.add("hidden");
 // };
 
 //////lap stopwatch on click
@@ -142,8 +146,17 @@ stopwatchLapBtn.onclick = () => {
     });
     document.querySelectorAll(".lap")[0].classList.add("active");
 };
+//<-------------------------------------------------->//
+////////////////////TIMER////////////////////////////
 
-////////////////////timer////////////////////////////
+let timerHourEle = document.getElementById("tm-hour");
+let timerMinEle = document.getElementById("tm-min");
+let timerSecEle = document.getElementById("tm-sec");
+let timerMillisecEle = document.getElementById("tm-millisec");
+
+let timerStartBtn = document.getElementById("startBtntimer");
+let timerStopBtn = document.getElementById("stopBtntimer");
+let timerResetBtn = document.getElementById("resetBtntimer");
 let time = 0,
     timerHours = 0,
     timerMinutes = 0,
@@ -168,11 +181,10 @@ const setTime = () => {
 
     //displaying time
 
-    document.getElementById("tm-hour").innerHTML = (timerHours < 10 ? "0" : "") + timerHours;
-    document.getElementById("tm-min").innerHTML = (timerMinutes < 10 ? "0" : "") + timerMinutes;
-    document.getElementById("tm-sec").innerHTML = (timerSeconds < 10 ? "0" : "") + timerSeconds;
-    document.getElementById("tm-millisec").innerHTML =
-        (timerMilliseconds < 10 ? "0" : "") + timerMilliseconds;
+    timerHourEle.innerHTML = (timerHours < 10 ? "0" : "") + timerHours;
+    timerMinEle.innerHTML = (timerMinutes < 10 ? "0" : "") + timerMinutes;
+    timerSecEle.innerHTML = (timerSeconds < 10 ? "0" : "") + timerSeconds;
+    timerMillisecEle.innerHTML = (timerMilliseconds < 10 ? "0" : "") + timerMilliseconds;
 };
 
 const timer = () => {
@@ -192,11 +204,10 @@ const timer = () => {
     }
 
     //update time
-    document.getElementById("tm-hour").innerHTML = (timerHours < 10 ? "0" : "") + timerHours;
-    document.getElementById("tm-min").innerHTML = (timerMinutes < 10 ? "0" : "") + timerMinutes;
-    document.getElementById("tm-sec").innerHTML = (timerSeconds < 10 ? "0" : "") + timerSeconds;
-    document.getElementById("tm-millisec").innerHTML =
-        (timerMilliseconds < 10 ? "0" : "") + timerMilliseconds;
+    timerHourEle.innerHTML = (timerHours < 10 ? "0" : "") + timerHours;
+    timerMinEle.innerHTML = (timerMinutes < 10 ? "0" : "") + timerMinutes;
+    timerSecEle.innerHTML = (timerSeconds < 10 ? "0" : "") + timerSeconds;
+    timerMillisecEle.innerHTML = (timerMilliseconds < 10 ? "0" : "") + timerMilliseconds;
 
     //checking if time is up
     timeUp();
@@ -212,15 +223,15 @@ const startTimer = () => {
         getTime();
     } else {
         timerInterval = setInterval(timer, 10);
-        document.getElementById("startBtntimer").classList.add("hidden");
-        document.getElementById("stopBtntimer").classList.remove("hidden");
+        timerStartBtn.classList.add("hidden");
+        timerStopBtn.classList.remove("hidden");
     }
 };
 
 const stopTimer = () => {
     clearInterval(timerInterval);
-    document.getElementById("startBtntimer").classList.remove("hidden");
-    document.getElementById("stopBtntimer").classList.add("hidden");
+    timerStartBtn.classList.remove("hidden");
+    timerStopBtn.classList.add("hidden");
 };
 
 const resetTimer = () => {
@@ -237,18 +248,19 @@ const timeUp = () => {
         timerMilliseconds === 0
     ) {
         resetTimer();
-        alert("Time is up!");
+        document.querySelector(".content").style.background = "none";
+        document.querySelector(".content").style.backgroundColor = "red";
     }
 };
 
-document.getElementById("startBtntimer").onclick = () => {
+timerStartBtn.onclick = () => {
     startTimer();
 };
 
-document.getElementById("stopBtntimer").onclick = () => {
+timerStopBtn.onclick = () => {
     stopTimer();
 };
 
-document.getElementById("resetBtntimer").onclick = () => {
+timerResetBtn.onclick = () => {
     resetTimer();
 };

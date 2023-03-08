@@ -13,11 +13,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
 }
 
-.container.timer {
-    background: linear-gradient(45deg, #bdc3c7, #bdc3c7);
+.stopwatchActive {
+    background: linear-gradient(45deg, #02aab0, #00cdac);
+}
+.timerActive {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
 }
 
 .content {
@@ -26,6 +29,7 @@
     padding: 60px;
     border-radius: 15px;
     color: #fff;
+    background: linear-gradient(45deg, #02aab0, #00cdac);
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.15);
 }
 
