@@ -1,4 +1,6 @@
-///Stopwatch////
+//------------------Variable declaration----------------------//
+
+///////////Stopwatch//////--------------------------
 
 let stHour = document.getElementById("st-hour");
 let stMin = document.getElementById("st-min");
@@ -7,6 +9,36 @@ let stMillisec = document.getElementById("st-millisec");
 let stopwatchStartBtn = document.getElementById("startBtn");
 let stopwatchPauseBtn = document.getElementById("pauseBtn");
 let stopwatchLapBtn = document.getElementById("lapBtn");
+let stopwatchResetBtn = document.getElementById("resetBtn");
+
+///////////Timer//////--------------------------
+let timerHourEle = document.getElementById("tm-hour");
+let timerMinEle = document.getElementById("tm-min");
+let timerSecEle = document.getElementById("tm-sec");
+let timerMillisecEle = document.getElementById("tm-millisec");
+
+let timerStartBtn = document.getElementById("startBtntimer");
+let timerStopBtn = document.getElementById("stopBtntimer");
+let timerResetBtn = document.getElementById("resetBtntimer");
+let time = 0,
+    timerHours = 0,
+    timerMinutes = 0,
+    timerSeconds = 0,
+    timerMilliseconds = 0,
+    timerInterval;
+
+////////ToggleButtons//////-----------------------
+
+let stopwatchButton = document.getElementById("stopwatchToggleBtn");
+let timerButton = document.getElementById("timerToggleBtn");
+
+//////Wrapper Blocks///////
+
+let stopwatchWrapper = document.querySelector(".stinnerWrapper");
+let timerWrapper = document.querySelector(".tminnerWrapper");
+
+///------------------Stopwatch--------------------////
+
 //declaring variables
 let stopwatchHours = 0,
     stopwatchMinutes = 0,
@@ -90,18 +122,16 @@ stopwatchStartBtn.onclick = () => {
 
     //show the pause button and lap button
     stopwatchStartBtn.classList.add("hidden");
-    stopwatchPauseBtn.classList.remove("hidden");
     stopwatchLapBtn.classList.remove("hidden");
 };
 
 //////resetting stopwatch on click
 
-document.getElementById("resetBtn").onclick = () => {
+stopwatchResetBtn.onclick = () => {
     resetStopwatch();
 
     //hide the pause button and lap button
     stopwatchStartBtn.classList.remove("hidden");
-    stopwatchPauseBtn.classList.add("hidden");
     stopwatchLapBtn.classList.add("hidden");
     //deleting the laps
     document.querySelectorAll(".lap").forEach((e) => {
@@ -109,17 +139,7 @@ document.getElementById("resetBtn").onclick = () => {
     });
 };
 
-//////pausing stopwatch on click
-
-// stopwatchPauseBtn.onclick = () => {
-//     pauseStopwatch();
-
-//     //show the pause button and lap button
-//     stopwatchStartBtn.classList.remove("hidden");
-//     stopwatchPauseBtn.classList.add("hidden");
-// };
-
-//////lap stopwatch on click
+//////lap stopwatch on click/////////
 
 stopwatchLapBtn.onclick = () => {
     //increment lap
@@ -146,23 +166,7 @@ stopwatchLapBtn.onclick = () => {
     });
     document.querySelectorAll(".lap")[0].classList.add("active");
 };
-//<-------------------------------------------------->//
-////////////////////TIMER////////////////////////////
-
-let timerHourEle = document.getElementById("tm-hour");
-let timerMinEle = document.getElementById("tm-min");
-let timerSecEle = document.getElementById("tm-sec");
-let timerMillisecEle = document.getElementById("tm-millisec");
-
-let timerStartBtn = document.getElementById("startBtntimer");
-let timerStopBtn = document.getElementById("stopBtntimer");
-let timerResetBtn = document.getElementById("resetBtntimer");
-let time = 0,
-    timerHours = 0,
-    timerMinutes = 0,
-    timerSeconds = 0,
-    timerMilliseconds = 0,
-    timerInterval;
+///////-------------------------TIMER-------------------------/////////
 
 const getTime = () => {
     time = prompt("Enter time in minutes :)");
@@ -214,6 +218,8 @@ const timer = () => {
 };
 
 const startTimer = () => {
+    timerWrapper.style.background = "linear-gradient(45deg, #2193b0, #6dd5ed)";
+
     //checking for validity
     if (
         (timerHours === 0) & (timerMinutes === 0) &&
@@ -229,6 +235,8 @@ const startTimer = () => {
 };
 
 const stopTimer = () => {
+    timerWrapper.style.background = "linear-gradient(45deg, #eacda3, #d6ae7b)";
+
     clearInterval(timerInterval);
     timerStartBtn.classList.remove("hidden");
     timerStopBtn.classList.add("hidden");
@@ -238,6 +246,7 @@ const resetTimer = () => {
     stopTimer();
     time = 0;
     setTime();
+    timerWrapper.style.background = "linear-gradient(45deg, #2193b0, #6dd5ed)";
 };
 
 //check if time remanding is 0
@@ -248,8 +257,7 @@ const timeUp = () => {
         timerMilliseconds === 0
     ) {
         resetTimer();
-        document.querySelector(".content").style.background = "none";
-        document.querySelector(".content").style.backgroundColor = "red";
+        timerWrapper.style.background = "linear-gradient(45deg, #eb3349, #f45c43)";
     }
 };
 
@@ -264,3 +272,15 @@ timerStopBtn.onclick = () => {
 timerResetBtn.onclick = () => {
     resetTimer();
 };
+
+///////////////////Button to TOggle///////////////
+
+stopwatchButton.addEventListener("click", () => {
+    stopwatchWrapper.classList.remove("hidden");
+    timerWrapper.classList.add("hidden");
+});
+
+timerButton.addEventListener("click", () => {
+    stopwatchWrapper.classList.add("hidden");
+    timerWrapper.classList.remove("hidden");
+});

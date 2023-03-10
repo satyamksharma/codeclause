@@ -7,20 +7,85 @@
     font-family: "Poppins", sans-serif;
     overflow: hidden;
 }
+body {
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+.heading {
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.663);
+    text-align: center;
+    width: 100vw;
+    padding: 10px 20px;
+}
 
 .container {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
 }
 
-.stopwatchActive {
-    background: linear-gradient(45deg, #02aab0, #00cdac);
+.stinnerWrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 60px;
+    border-radius: 15px;
+    color: #fff;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(45deg, #56c596, #7be495);
 }
-.timerActive {
+
+.tminnerWrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 60px;
+    border-radius: 15px;
+    color: #fff;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.15);
     background: linear-gradient(45deg, #2193b0, #6dd5ed);
+}
+
+.navigation {
+    max-width: 800px;
+    width: 100%;
+    background: transparent;
+    border-radius: 15px;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.15);
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.toggle {
+    padding: 10px;
+}
+
+.toggle:hover,
+.toggle:active {
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.485);
+}
+
+.buttons li {
+    list-style: none;
+    font-size: 2rem;
+}
+
+.stopwatch,
+.timer {
+    transition: all 0.3s;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .content {
@@ -29,7 +94,6 @@
     padding: 60px;
     border-radius: 15px;
     color: #fff;
-    background: linear-gradient(45deg, #02aab0, #00cdac);
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.15);
 }
 
